@@ -1,0 +1,48 @@
+#include <vector>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+struct PredmUk
+{
+	char Name[30];
+	int Number;
+};
+int main()
+{
+	setlocale(0, "rus");
+	int n, k;
+	char t;
+	cout << "Формирование предметного указателя";
+	cout << "\nВведите размер предметного указателя(0<n<10)n=";
+	cin >> n;
+	while (n < 1 || n>20)
+	{
+		cout << "Размер предметного указателя введен не правильно(0<n<10).\nВведите повторно n= ";
+		cin >> n;
+	}
+
+	vector<PredmUk> v(n);
+	for (int i = 0; i < v.size(); i++)
+	{
+		cout << "Введите слово №" << i + 1 << ": ";
+		cin >> v[i].Name;
+		cout << "Введите номер страницы: ";
+		cin >> v[i].Number;
+
+	}
+	cout << "Формирование завершено\n";
+	cout << "Хотите просмореть предметный указатель?\nЕлси да - введите 1\n";
+	cin >> k;
+	if (k == 1)
+	{
+		cout << "Вывод предметного указателя :" << endl;
+		for (int i = 0; i < v.size(); i++)
+		{
+			cout << "Слово: " << v[i].Name << endl;
+			cout << "Номер страницы: " << v[i].Number << endl;
+		}
+	}
+	cin >> t;
+	system("pause");
+	return 0;
+}
