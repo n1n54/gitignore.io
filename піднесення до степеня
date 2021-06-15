@@ -1,0 +1,29 @@
+#include <iostream> 
+using namespace std;
+int func(int, int); 
+int main()
+{
+    int number;
+    int degree;
+
+    cout << "Num ";
+    cin >> number;
+    cout << "pow ";
+    cin >> degree;
+    cout << "Num " << number << " ^pow " << degree << " = " << func(number, degree) << endl;
+
+    system("Pause");
+}
+
+int func(int n, int d)
+{
+    if (d == 0) {
+        return 1;
+    }
+    if (d == 1) {
+        return n;
+    }
+    else {
+        return n * func(n, d - 1);
+    }
+}
