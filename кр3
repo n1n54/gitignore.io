@@ -1,0 +1,174 @@
+#include<iostream>
+#include <ctime>
+ 
+using namespace std;
+ 
+class Array
+{
+private:
+    int* arr;
+    int N;
+public:
+    Array() 
+    {
+        N = 1;
+        arr = new int[N];
+        for (int i = 0; i < N; i++)
+            arr[i] = 0;
+    }
+    Array(int n) 
+    {
+        N = n;
+        arr = new int[N];
+        set();
+    }
+ 
+    Array(const Array& source) 
+    {
+        N = source.N;
+        arr = new int[N];
+        for (int i = 0; i < N; i++)
+            arr[i] = source.arr[i];
+    }
+ 
+    ~Array() 
+    {
+        delete[]arr; 
+    }
+ 
+    int getsize() 
+    {
+        return N;
+    }
+ 
+    int* getarray()
+    {
+        return arr;
+    }
+ 
+    void print() 
+    {
+        for (int i = 0; i < N; i++)
+            cout << arr[i] << "  ";
+        cout << endl;
+    }
+ 
+    void set() 
+    {
+        srand(time(0));
+        for (int i = 0; i < N; i++)
+            arr[i] = rand() % 100;
+    }
+ 
+ 
+    void sort() 
+    {
+        int temp; 
+        for (int i = 0; i < N; i++)
+        {
+            temp = arr[i]; 
+            for (int j = i; j < N; j++)
+                if (temp > arr[j])
+                {
+                    temp = arr[j]; 
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+        }
+    }
+    int max()
+    {
+        sort();
+        return arr[N - 1];
+    }
+    int min()
+    {
+        sort();
+        return arr[0];
+    }
+};
+ 
+Array operator+(Array a, Array b)
+{
+    if (a.getsize() != b.getsize())
+    {
+        throw std::invalid_argument("Given arrays are incompatible by size");
+    }
+ 
+    Array result = Array(a.getsize());
+ 
+    for (int i = 0; i < result.getsize(); i++)
+    {
+        result.getarray()[i] = a.getarray()[i] + b.getarray()[i];
+    }
+ 
+    return result;
+}
+ 
+Array operator-(Array a, Array b)
+{
+    if (a.getsize() != b.getsize())
+    {
+        throw std::invalid_argument("Given arrays are incompatible by size");
+    }
+ 
+    Array result = Array(a.getsize());
+ 
+    for (int i = 0; i < result.getsize(); i++)
+    {
+        result.getarray()[i] = a.getarray()[i] - b.getarray()[i];
+    }
+ 
+    return result;
+}
+ 
+Array operator*(Array a, Array b)
+{
+    if (a.getsize() != b.getsize())
+    {
+        throw std::invalid_argument("Given arrays are incompatible by size");
+    }
+ 
+    Array result = Array(a.getsize());
+ 
+    for (int i = 0; i < result.getsize(); i++)
+    {
+        result.getarray()[i] = a.getarray()[i] * b.getarray()[i];
+    }
+ 
+    return result;
+}
+ 
+int main()
+{
+    setlocale(LC_CTYPE, "rus");
+    int n;
+    cout << "Введите размер массива: ";
+    cin >> n;
+    Array array(n);
+    cout << "Массив" << endl;
+    array.print();
+    array.sort();
+    cout << "остортированный Массив" << endl;
+    array.print();
+    cout << "Max=" << array.max() << " Min=" << array.min() << endl;
+ 
+    Array secondArray = Array(n);
+    cout << "второй Массив" << endl;
+    secondArray.print();
+ 
+    cout << "Если сплюсовать отсортированный и второй" << endl;
+    Array sum = array + secondArray;
+    sum.print();
+ 
+    cout << "Если отнять от отсортированного второй" << endl;
+    Array subtraction = array - secondArray;
+    subtraction.print();
+ 
+    cout << "Если отсортированный умножить на второй" << endl;
+    Array multiplication = array * secondArray;
+    multiplication.print();
+ 
+    system("pause");
+    return 0;
+}
