@@ -1,0 +1,28 @@
+#include <vector>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+
+void fut()
+{
+float k;
+float a;
+float b;
+float c;
+
+
+	cin>>a; 
+	cin>>b; 
+	cin>>c;
+	
+k=a; a=b;b=c;c=k;
+cout<<a<<" "<<b<<" "<<c;	
+}
+
+int main() 
+{ 
+setlocale(LC_ALL, "ru");
+cout<<"Enter 3 numbers:"<<endl;
+fut();
+
+}
