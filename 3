@@ -1,0 +1,26 @@
+using System;
+
+namespace y
+{
+    class Program
+    {
+
+        static void Main()
+        {
+            string str = String.Empty;
+            for (int i = 0; i < 10; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    str += "error ";
+                }
+                else
+                {
+                    str += "404 ";
+                }
+            }
+            Console.WriteLine(str);
+            Console.ReadLine();
+        }
+    }
+}
