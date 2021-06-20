@@ -1,0 +1,26 @@
+using System;
+
+namespace y
+{
+    class Program
+    {
+
+        static void Main()
+        {
+            string str = "Howareyou?";
+            for (int i = str.Length; i > 0; i--)
+            {
+                if (i % 3 == 0)
+                {
+                    str = str.Insert(i, " ");
+
+                }
+
+
+            }
+
+            Console.WriteLine(str);
+            Console.ReadLine();
+        }
+    }
+}
