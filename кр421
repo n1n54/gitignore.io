@@ -1,0 +1,57 @@
+#include <iostream> 
+#include <Windows.h>
+#include <string> 
+
+class Student 
+{ 
+private: 
+    char name[20]; 
+    char surname[20]; 
+    char patronomyc[20]; 
+    int data[3]; 
+    int average; 
+    char faculty[50]; 
+    int course; 
+public:  
+    Student() {  name[0] = '\0', surname[0] = '\0', patronomyc[0] = '\0', 
+        faculty[0] = '\0', average = 0, memset(data,0,sizeof(data));} 
+    void get(); 
+    void set(); 
+};  
+ using namespace std;
+
+void Student::get() 
+{ 
+setlocale(LC_ALL,"Rus");
+
+    std::cout << "Ââåäèòå èìÿ ñòóäåíòà " << std::endl; 
+    std::cin >> name; 
+    std::cout << "Ââåäèòå îò÷åñòâà ñòóäåíòà " << std::endl; 
+    std::cin >> patronomyc; 
+    std::cout << "Ââåäèòå ôàìèëèþ " << std::endl; 
+    std::cin >> surname; 
+    std::cout << "Ââåäèòå ãîä ðîæäåíèÿ " << std::endl; 
+    std::cin >> data[0]; 
+    std::cout << "Ââåäèòå ìåñÿö ðîæäåíèÿ " << std::endl; 
+    std::cin >> data[1]; 
+    std::cout << "Ââåäèòå äåíü ðîæäåíèÿ " << std::endl; 
+    std::cin >> data[2];  
+} 
+ 
+void Student::set() 
+{ 
+    std::cout << "Èìÿ îò÷åñòâî ñòóäåíòà " << name << " " << surname << " " << patronomyc << std::endl; 
+    std::cout << "Äàòà ðîæäåíèÿ " << data[2] << "." <<data[1] << "." << data[0] << std::endl; 
+    std::cout << "Îí  ";
+
+}
+ 
+int main() 
+{  
+    SetConsoleCP(1251); 
+    SetConsoleOutputCP(1251); 
+ 
+    Student s; 
+    s.get(); 
+    s.set();
+}
