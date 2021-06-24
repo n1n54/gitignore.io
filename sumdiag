@@ -1,0 +1,47 @@
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+ 
+int main()
+{
+	setlocale(LC_ALL,"Rus");
+    srand((int)time(0));
+    int n;
+    cout << "n="; cin >> n;
+    
+      double **A = new double*[n], sum_md=0.;
+    for (int i = 0; i < n; i++)
+         A[i]=new double[n];
+    
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+        A[i][j]=rand()%9+ 1;
+        cout << setw(3) << A[i][j] << "  ";
+        }
+    cout << "\n";
+    }
+    cout << "\n";
+    
+    for(int i = 0; i < n; i++) 
+    {
+        for(int j = 0; j < n; j++)
+            {
+            if(i>j && A[i][j]>A[j][i]) A[i][j]=(A[i][j]+A[j][i])/2.;
+            cout << setw(3) << A[i][j] << "  ";
+            }
+    sum_md+=A[i][i];            
+    cout << "\n";
+    }
+ 
+    cout << "Сумма главной диагонали = " << sum_md << "\n";
+    
+    for (int i = 0; i < n; i++)
+    delete[]A[i];
+    delete[]A;
+system("pause");
+return 0;
+}
